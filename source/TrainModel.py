@@ -16,7 +16,6 @@ from sklearn.impute import IterativeImputer
 
 
 def TrainModel(trainData, testData, reIncludeVal=True, tuneThreshold=True, iterations=5, plotRocFigs=False, plotSubmodelFigs=False, plotpath=None, testRF=False, testLR=False, minThr=15, maxThr=31, random_state=1, beta=2):
-    #plotpath = '/opt/genomics/Jupyter_Notebook/ARudas/CDM_queries/CDM_Covid19/covid19plots/0424'
     randSt=np.random.RandomState(random_state)
     expnum='OnlyCBCandDem'
     experiments={}
@@ -98,17 +97,7 @@ def TrainModel(trainData, testData, reIncludeVal=True, tuneThreshold=True, itera
             recalls.append(recall)
             fbeta = (1+beta**2)*recall*precision/(beta**2*precision+recall)
             fbetas.append(fbeta)
-                
-            """prec, rec, _ = precision_recall_curve(y_test, y_prob)
-                pr_auc = sklearn.metrics.auc(rec, prec)
-                if plotRocFigs:
-                    axarr[0].plot(fpr,tpr, label=exp+', AUC = %.2f' % auc)
-                    axarr[1].plot(rec,prec, label=exp+', AUC = %.2f' % pr_auc)
 
-                #print('Precision: %.2f     t Recall: %.2f     t Fbeta: %.2f' % (precision[1], recall[1], fscore[1]))
-                #print(str(threshold)+' exit')
-                if plotSubmodelFigs:
-                    submodelplots[exp] = comclf.plot_submodel_roc_curves(y_test, exp_name=exp, saveFig=False, figPath=plotpath)"""
                 
         m_precision = np.mean(precisions)
         m_recall = np.mean(recalls)
@@ -118,13 +107,7 @@ def TrainModel(trainData, testData, reIncludeVal=True, tuneThreshold=True, itera
             bestfscore=m_fbeta
             bestThreshold=threshold
         print('Threshold: %.2f     Precision: %.2f     Recall: %.2f     Fbeta: %.2f' % (threshold, m_precision, m_recall, m_fbeta))
-    """if plotRocFigs:
-        axarr[0].legend()
-        axarr[1].set_xlabel('Recall', fontsize=15)
-        axarr[1].set_ylabel('Precision', fontsize=15)
-        axarr[1].legend(fontsize=12)"""
-    #scaler.fit(X_train.drop(['PatientEncounterCSNID'], axis=1))
-    #commodel = comclf.fit(np.vstack([X_train, X_test]), np.vstack([y_train, y_test])
+
         
     if reIncludeVal:    
         X_train = pd.concat([trainData, testData]).drop(['positive','negative']+colToDrop,axis=1).fillna(0)

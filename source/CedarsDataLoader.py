@@ -12,9 +12,9 @@ from datetime import timedelta
 
 def CedarsDataLoader(patient_file_path=None, flat_file_path=None, filterBy=[], anyInfMarker=False):
     if patient_file_path is None:
-        patient_file_path = "/opt/genomics/workingdir/jnchiang/projects/COVID_19/models/LabTestProxy/cedars/UCLA Patient File.csv"
+        patient_file_path = <path_cedars_patients_file>
     if flat_file_path is None:
-        flat_file_path = "/opt/genomics/workingdir/jnchiang/projects/COVID_19/models/LabTestProxy/cedars/UCLA Flat File Modified.csv"
+        flat_file_path = <path_cedars_flat_file>
     pf = pd.read_csv(patient_file_path)
     #pf.head()
 

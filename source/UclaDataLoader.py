@@ -9,17 +9,14 @@ import tqdm
 from datetime import date
 from datetime import timedelta 
 
-#labs_path = '/opt/genomics/workingdir/jnchiang/projects/COVID_19/data/raw/cases_recent/covid_labs.rpt'
-#encounters_path = '/opt/genomics/workingdir/jnchiang/projects/COVID_19/data/raw/cases_recent/covid_encounters.rpt'
-#patients_path = '/opt/genomics/workingdir/jnchiang/projects/COVID_19/data/raw/cases_recent/covid_patients.rpt'
 
 def UclaDataLoader(labs_path=None, encounters_path=None, patients_path=None, filterBy=[], anyInfMarker=False):
     if labs_path is None:
-        labs_path = '/opt/genomics/workingdir/jnchiang/projects/COVID_19/data/raw/cases_recent/covid_labs.rpt'
+        labs_path = <path_ucla_labs_file>
     if encounters_path is None:
-        encounters_path = '/opt/genomics/workingdir/jnchiang/projects/COVID_19/data/raw/cases_recent/covid_encounters.rpt'
+        encounters_path = <path_ucla_encounters_file>
     if patients_path is None:
-        patients_path = '/opt/genomics/workingdir/jnchiang/projects/COVID_19/data/raw/cases_recent/covid_patients.rpt'
+        patients_path = <path_ucla_patients_file>
 
     df = pd.read_csv(labs_path, delimiter="$", error_bad_lines=False)
     df['OrderDateTime'] = pd.to_datetime(df['OrderDateTime'])

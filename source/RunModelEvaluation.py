@@ -14,13 +14,13 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # ucla files
-ucla_labs = '/opt/genomics/workingdir/jnchiang/projects/COVID_19/data/raw/cases_recent/covid_labs.rpt'
-ucla_encounters = '/opt/genomics/workingdir/jnchiang/projects/COVID_19/data/raw/cases_recent/covid_encounters.rpt'
-ucla_patients = '/opt/genomics/workingdir/jnchiang/projects/COVID_19/data/raw/cases_recent/covid_patients.rpt'
+ucla_labs = <path_ucla_labs_file>
+ucla_encounters = <path_ucla_encounters_file>
+ucla_patients = <path_ucla_patients_file>
 
 # cedars files
-cedars_patients = "/opt/genomics/workingdir/jnchiang/projects/COVID_19/models/LabTestProxy/cedars/UCLA Patient File.csv"
-cedars_flat_file = "/opt/genomics/workingdir/jnchiang/projects/COVID_19/models/LabTestProxy/cedars/UCLA Flat File.xls"
+cedars_patients = <path_cedars_patients_file>
+cedars_flat_file = <path_cedars_flat_file>
 
 # Read data #
 dataSets = ['ucla', 'cedars']
