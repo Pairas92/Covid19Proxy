@@ -1,0 +1,27 @@
+# Input features #
+['Hemoglobin', 'Absolute Lymphocyte Count', 'Absolute Neut Count',
+       'PLATELET COUNT, AUTO', 'C-Reactive Protein', 'Ferritin',
+       'Absolute Baso Count', 'Absolute Eos Count', 'Absolute Mono Count',
+       'Lactate Dehydrogenase', 'Red Blood Cell Count', 'Lymp/Neut', 'Age',
+       'Male']
+
+# Model structure #
+(CombinedClassifier(),
+ StandardScaler(),
+ Threshold,
+ KNNImputer() #not in use
+)
+
+# Load the model #
+import pickle
+
+model = pickle.load( open( "<path>/model.p", "rb" ) )
+
+# Scale input # (using DataFrame as input data type) #
+X = pd.DataFrame(model[1].transform(X), columns=X.columns, index=X.index)
+
+# Get probabilities #
+prob = model[0].predict(X)
+    
+# Get predictions #
+pred = [1 if p >= model[2] else 0 for p in prob]
