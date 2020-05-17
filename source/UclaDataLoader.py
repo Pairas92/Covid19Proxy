@@ -8,6 +8,7 @@ import sklearn
 import tqdm
 from datetime import date
 from datetime import timedelta 
+from datetime import datetime as dt
 
 
 def UclaDataLoader(labs_path=None, encounters_path=None, patients_path=None, filterBy=[], anyInfMarker=False):
@@ -193,7 +194,7 @@ def UclaDataLoader(labs_path=None, encounters_path=None, patients_path=None, fil
         try:
             return test_dates[x]
         except:
-            return 0
+            return pd.Series(dt.fromtimestamp(0)).dt.to_pydatetime()[0]
 
     #print(test_dates)
     df['TestDate'] = df['PatientEncounterCSNID'].apply(lambda x: get_test_date(x))
