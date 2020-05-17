@@ -34,9 +34,9 @@ def TrainModel(trainData, testData, reIncludeVal=True, tuneThreshold=True, itera
         axarr[1].set_ylim((-0.1,1.1))
 
         
-    X_train = trainData.drop(['positive','negative']+colToDrop,axis=1).fillna(0)
+    X_train = trainData.drop(['positive','negative']+colToDrop,axis=1).fillna(0).replace([np.inf, -np.inf], 0)
     y_train = trainData['positive']
-    X_test = testData.drop(['positive','negative']+colToDrop,axis=1).fillna(0)
+    X_test = testData.drop(['positive','negative']+colToDrop,axis=1).fillna(0).replace([np.inf, -np.inf], 0)
     y_test = testData['positive']
         
     scaler = StandardScaler()
@@ -110,7 +110,7 @@ def TrainModel(trainData, testData, reIncludeVal=True, tuneThreshold=True, itera
 
         
     if reIncludeVal:    
-        X_train = pd.concat([trainData, testData]).drop(['positive','negative']+colToDrop,axis=1).fillna(0)
+        X_train = pd.concat([trainData, testData]).drop(['positive','negative']+colToDrop,axis=1).fillna(0).replace([np.inf, -np.inf], 0)
         y_train = pd.concat([trainData, testData])['positive']
 
         scaler = StandardScaler()

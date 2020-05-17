@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import StandardScaler
 from CombinedClassifier import CombinedClassifier
 from sklearn.metrics import precision_recall_fscore_support
@@ -12,7 +13,7 @@ from sklearn.metrics import auc
 def TestModel(model, testData, showReport=True):
     (commodel, scaler, threshold, imputer) = model
     
-    X_test = testData.drop(['positive','negative'],axis=1).fillna(0)
+    X_test = testData.drop(['positive','negative'],axis=1).fillna(0).replace([np.inf, -np.inf], 0)
     y_test = testData['positive']
     
     X_test = X_test.set_index('PatientEncounterCSNID')
