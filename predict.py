@@ -34,7 +34,9 @@ def predict(data, model, label_name=None, thr=None):
     
     logging.info("Preprocessing data")
     Xdata = data[model["features"]].rename(columns=rev_mapping)
-    Xdata['Lymp/Neut'] = Xdata["Absolute Lymphocyte Count"] / Xdata["Absolute Neut Count"]
+    Xdata['Lymp/Neut'] = (
+        Xdata["Absolute Lymphocyte Count"] / Xdata["Absolute Neut Count"]
+    ).fillna(0).replace([np.inf, -np.inf], 0)
 
     # Scale input
     X = pd.DataFrame(
