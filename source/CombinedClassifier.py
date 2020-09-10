@@ -7,10 +7,11 @@ from xgboost import XGBClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import SGDClassifier
 from sklearn.ensemble import AdaBoostClassifier
-from sklearn.metrics import fbeta_score, auc
-from sklearn.metrics import roc_auc_score
+import sklearn
+from sklearn.metrics import roc_auc_score, roc_curve, precision_recall_curve, fbeta_score, auc
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 class CombinedClassifier(BaseEstimator, ClassifierMixin):  
 
